@@ -12,10 +12,10 @@ export default function ProductDetail ({cartItems, setCartItems}) {
             fetch(process.env.REACT_APP_API_URL + '/product/' + id)
             .then(res => res.json())
             .then(res => setProduct(res.product))
-        }, []);
+        }, [id]);
 
     function addToCart() {
-        const itemExist = cartItems.find((item)=> item.product._id == product._id);
+        const itemExist = cartItems.find((item)=> item.product._id === product._id);
         if(!itemExist) {
             const newItem = {product, qty};
             setCartItems((state) => [...state, newItem]);
@@ -23,7 +23,7 @@ export default function ProductDetail ({cartItems, setCartItems}) {
         }
     }
     function increaseQty() {
-        if(product.stock == qty) {
+        if(product.stock === qty) {
            return; 
         }
         setQty((state) => state + 1);
@@ -60,7 +60,7 @@ export default function ProductDetail ({cartItems, setCartItems}) {
 
                         <span className="btn btn-primary plus" onClick={increaseQty}>+</span>
                     </div>
-                    <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4" disabled={product.stock == 0} onClick={addToCart}>Add to Cart</button>
+                    <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4" disabled={product.stock === 0} onClick={addToCart}>Add to Cart</button>
 
                     <hr/>
 
