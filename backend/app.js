@@ -13,7 +13,7 @@ connectDatabase();
 
 app.use(express.json());
 app.use(cors({
-    origin: 'https://mini-ecommerce-plum.vercel.app/',
+    origin: 'https://mini-ecommerce-plum.vercel.app',
     credentials: true
 }));
 app.use('/api/v1', products);
